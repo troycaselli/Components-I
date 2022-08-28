@@ -31,8 +31,8 @@ function  menuMaker(array) {
   menu.classList = 'menu';
   menu.appendChild(list);
 
-  const menuButton = document.querySelector('.menu-button');
-  menuButton.addEventListener('click', () => {
+  const hamMenu = document.querySelector('.menu-button');
+  hamMenu.addEventListener('click', () => {
     menu.classList.toggle('menu--open');
   })
   
@@ -41,8 +41,6 @@ function  menuMaker(array) {
 
 const header = document.querySelector('.header');
 header.appendChild(menuMaker(menuItems));
-
-console.log(header);
 
 
   // Step 2: Inside the function, iterate over the array creating a list item <li> element for each item in the array.

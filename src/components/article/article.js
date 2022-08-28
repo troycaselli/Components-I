@@ -150,8 +150,6 @@ function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagr
   return article;
 }
 
-const testData = articleMaker({title: 'A', date: '2', firstParagraph: 'sdfghj', secondParagraph: 'dfghjkl', thirdParagraph: 'end'});
-
   // Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   // This listener should toggle the class 'article-open' on div.article.
 
