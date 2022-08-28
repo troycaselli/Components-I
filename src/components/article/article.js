@@ -87,6 +87,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Another Article!',
+    date: 'September 2022',
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non vehicula leo. Vivamus nec odio turpis. Donec hendrerit ex sed leo sollicitudin iaculis. Nunc lacinia eleifend libero. In hac habitasse platea dictumst. Praesent hendrerit lacus non tempor condimentum. Nulla ultricies nibh at elit vestibulum, eu varius mi vehicula. Phasellus condimentum urna pulvinar elit fringilla congue. Nullam facilisis gravida ullamcorper. In hac habitasse platea dictumst.`,
+
+    secondParagraph: `In a bibendum augue, nec cursus ipsum. Suspendisse in nulla tempor ante feugiat consequat. Praesent vulputate faucibus nibh, in viverra odio pellentesque id. Donec ac venenatis purus, eu auctor erat. Mauris eros lorem, commodo at lobortis in, mattis at eros. Duis maximus, ex nec rhoncus convallis, lorem augue pellentesque quam, vitae cursus leo tellus a nisl. Nullam fringilla ex lectus, at scelerisque ex malesuada sed. Mauris ultrices justo vitae auctor tempus. Nam ac neque nisi. Nunc suscipit orci mi, vitae ultrices diam posuere id. Proin justo lorem, tincidunt vitae metus quis, commodo bibendum erat. Quisque mi orci, hendrerit nec imperdiet id, congue nec sem.`,
+
+    thirdParagraph: `Morbi sed tincidunt erat, ac gravida est. Morbi quis arcu porta, aliquet turpis ac, pharetra dui. Vivamus quis porttitor nisl. Ut scelerisque volutpat dictum. Suspendisse urna quam, eleifend a lectus et, vulputate sodales lacus. Donec dignissim tincidunt dui eget cursus. Aenean ac tortor porttitor, porttitor elit ac, ultrices arcu. Nullam tincidunt diam lectus, sed fringilla felis vestibulum eget. Cras eleifend nulla quis lobortis lobortis.`
   }
 ];
 
@@ -102,16 +111,62 @@ const data = [
     {three separate paragraph elements}
 
     <span class="expandButton">+</span>
-  </div>
+  </div>*/
 
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
-  This listener should toggle the class 'article-open' on div.article.
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}) {
+  // create elements
+  const article = document.createElement('div');
+  const heading = document.createElement('h2');
+  const artDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const span = document.createElement('span');
 
-  Step 3: Don't forget to return something from your function!
+  // structure elements
+  article.appendChild(heading);
+  article.appendChild(artDate);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(span);
 
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
+  // fill elements
+  
+  article.classList.add('article');
+  heading.textContent = title;
+  artDate.textContent = date;
+  artDate.classList.add('date');
+  para1.textContent = firstParagraph;
+  para2.textContent = secondParagraph;
+  para3.textContent = thirdParagraph;
+  span.textContent = '+';
+  span.classList.add('expandButton');
 
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
-  Refresh the page to see the new article.
-*/
+  span.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  return article;
+}
+
+const testData = articleMaker({title: 'A', date: '2', firstParagraph: 'sdfghj', secondParagraph: 'dfghjkl', thirdParagraph: 'end'});
+
+  // Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
+  // This listener should toggle the class 'article-open' on div.article.
+
+  // Step 3: Don't forget to return something from your function!
+
+  // Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
+  // to create a div.article element and append it to the DOM inside div.articles (see index.html).
+
+const articlesDiv = document.querySelector('.articles');
+
+data.forEach((object) => {
+  const article = articleMaker(object);
+  articlesDiv.appendChild(article);
+})
+
+  // Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+  // Refresh the page to see the new article.
+
